@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<http:listener-config name="air-india-publisher-exp-api-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="8086" connectionIdleTimeout="180000"/>
+    </http:listener-config>
+    <apikit:config name="air-india-publisher-exp-api-config" api="air-india-publisher-exp-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	<configuration-properties doc:name="Configuration properties" doc:id="878042ca-3b1b-48c0-8bc0-0880fbf19b01" file="properties\air-india-publisher-exp-api.properties" />
+	<http:request-config name="air-india-publisher-prc-api-request_configuration" doc:name="HTTP Request configuration" doc:id="db38d110-1fc5-409d-92cf-a07f39495039" basePath="/api" responseTimeout="180000">
+		<http:request-connection host="localhost" port="8085" connectionIdleTimeout="180000"/>
+	</http:request-config>
+    
+	
+</mule>
